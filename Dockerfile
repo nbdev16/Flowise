@@ -9,9 +9,10 @@ RUN apk add --update libc6-compat python3 make g++
 # needed for pdfjs-dist
 RUN apk add --no-cache build-base cairo-dev pango-dev
 
-# Install Python and UV for MCP support
-RUN apk add --no-cache python3 py3-pip
-RUN pip3 install uv
+# Install pip and UV for MCP support
+RUN apk add --no-cache py3-pip
+RUN python3 -m pip install --upgrade pip
+RUN python3 -m pip install uv
 
 # Install Chromium
 RUN apk add --no-cache chromium
