@@ -9,10 +9,10 @@ RUN apk add --update libc6-compat python3 make g++
 # needed for pdfjs-dist
 RUN apk add --no-cache build-base cairo-dev pango-dev
 
-# Install pip and UV for MCP support
-RUN apk add --no-cache py3-pip
-RUN python3 -m pip install --upgrade pip
-RUN python3 -m pip install uv
+# Install UV directly for MCP support
+RUN apk add --no-cache curl bash
+RUN curl -LsSf https://astral.sh/uv/install.sh | sh
+ENV PATH="/root/.local/bin:$PATH"
 
 # Install Chromium
 RUN apk add --no-cache chromium
